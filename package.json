@@ -1,0 +1,18 @@
+{
+  "name": "lol-ptono",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:backend": "pnpm --filter backend dev",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev": "pnpm --parallel --filter \"./apps/*\" dev",
+    "build:backend": "pnpm --filter backend build",
+    "build:frontend": "pnpm --filter frontend build",
+    "build": "pnpm --filter \"./apps/*\" build",
+    "lint": "pnpm --filter \"./apps/*\" lint",
+    "format": "pnpm --filter \"./apps/*\" format"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
