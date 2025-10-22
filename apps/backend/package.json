@@ -9,6 +9,7 @@
     "build": "node ace build",
     "start": "node bin/server.js",
     "lint": "eslint .",
+    "test": "node ace test",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit"

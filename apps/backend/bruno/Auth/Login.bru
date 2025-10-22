@@ -1,0 +1,22 @@
+meta {
+  name: Login
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}api/auth/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "arthur@zqdqdqz.fr",
+    "password": "123Arthur"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
