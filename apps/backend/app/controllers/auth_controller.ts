@@ -2,19 +2,20 @@ import { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import { loginValidator, registerValidator } from '#validators/auth'
 import { inject } from '@adonisjs/core'
-import { AuthService } from '#services/auth_service'
-import { LoginRequest } from '../dtos/auth/login_request.js'
+import { CommandBus } from '../_common/use-cases/command_bus.js'
+import { LoginCommand } from '../use-cases/auth/login/login_command.js'
+import { toClassInstance } from '../_common/helpers/to_class_instance.js'
 
 @inject()
 export default class AuthController {
-  constructor(private readonly _authService: AuthService) {}
+  constructor(private readonly _commandBus: CommandBus) {}
 
   async login({ request, response }: HttpContext) {
-    const loginRequest: LoginRequest = await request.validateUsing(loginValidator)
-
-    const data = await this._authService.login(loginRequest)
-    return response.ok(data)
+    const payload = await request.validateUsing(loginValidator)
+    const command = toClassInstance(LoginCommand, payload)
+    return response.ok(await this._commandBus.execute(command))
   }
+
   async register({ request, response }: HttpContext) {
     const payload = await request.validateUsing(registerValidator)
 
