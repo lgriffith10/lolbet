@@ -6,7 +6,7 @@ import User from '#models/user'
 import { randomUUID } from 'node:crypto'
 
 export default class LobbyUser extends BaseModel {
-  static table = 'lobby_user'
+  static table = 'user_lobby'
 
   @column({ isPrimary: true })
   declare id: string
