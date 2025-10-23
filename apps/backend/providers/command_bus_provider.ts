@@ -41,9 +41,5 @@ export default class CommandBusProvider {
     for (const file of handlerFiles) {
       await import(pathToFileURL(file).href)
     }
-
-    for (const [cmd, handler] of CommandBus['handlers'].entries()) {
-      console.log(`→ ${cmd.name} ↦ ${handler.constructor.name}`)
-    }
   }
 }

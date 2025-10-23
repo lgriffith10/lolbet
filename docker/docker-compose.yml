@@ -3,7 +3,7 @@
 services:
   db:
     image: postgres:17
-    container_name: postgres_db
+    container_name: lolbet_db
     restart: always
     environment:
       POSTGRES_USER: admin
@@ -16,8 +16,25 @@ services:
     networks:
       - postgres_network
 
+  db_test:
+    image: postgres:17
+    container_name: lolbet_db_test
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: supersecret
+      POSTGRES_DB: lolbet
+    volumes:
+      - postgres_data_test:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - postgres_network
+
+
 volumes:
   postgres_data:
+  postgres_data_test:
 
 networks:
   postgres_network:

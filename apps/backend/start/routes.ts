@@ -8,8 +8,10 @@
 */
 
 import router from '@adonisjs/core/services/router'
+import { middleware } from '#start/kernel'
 
 const AuthController = () => import('#controllers/auth_controller')
+const LobbyController = () => import('#controllers/lobby_controller')
 
 router
   .group(() => {
@@ -20,5 +22,19 @@ router
         router.post('logout', [AuthController, 'logout'])
       })
       .prefix('auth')
+
+    router
+      .group(() => {
+        router
+          .group(() => {
+            router.post('createLobby', [LobbyController, 'createLobby'])
+          })
+          .prefix('lobby')
+      })
+      .use(
+        middleware.auth({
+          guards: ['api'],
+        })
+      )
   })
   .prefix('api')
