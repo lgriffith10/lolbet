@@ -80,6 +80,11 @@ export default defineConfig({
         name: 'functional',
         timeout: 30000,
       },
+      {
+        files: ['tests/validators/**/*.spec(.ts|.js)'],
+        name: 'validators',
+        timeout: 30000,
+      },
     ],
     forceExit: false,
   },
