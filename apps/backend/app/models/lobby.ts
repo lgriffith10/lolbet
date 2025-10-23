@@ -27,6 +27,7 @@ export default class Lobby extends BaseModel {
     localKey: 'id',
     pivotForeignKey: 'lobby_id',
     relatedKey: 'id',
+    pivotTable: 'user_lobby',
     pivotRelatedForeignKey: 'user_id',
   })
   declare players: ManyToMany<typeof User>

@@ -3,7 +3,9 @@ import { CommandHandler } from '../../../_common/decorators/command_handler_deco
 import { Handler } from '../../../_common/use-cases/base_handler.js'
 import { RegisterCommand } from './register_command.js'
 import { RegisterResponse } from './register_response.js'
+import { inject } from '@adonisjs/core'
 
+@inject()
 @CommandHandler(RegisterCommand)
 export default class RegisterHandler implements Handler<RegisterCommand, RegisterResponse> {
   async execute(command: RegisterCommand): Promise<RegisterResponse> {

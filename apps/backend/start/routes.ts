@@ -27,7 +27,7 @@ router
       .group(() => {
         router
           .group(() => {
-            router.post('createLobby', [LobbyController, 'createLobby'])
+            router.post('create', [LobbyController, 'create'])
           })
           .prefix('lobby')
       })

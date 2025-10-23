@@ -1,5 +1,5 @@
 import { ApplicationService } from '@adonisjs/core/types'
-import { CommandBus } from '../app/_common/use-cases/command_bus.js'
+import { CommandBus } from '#common/use-cases/command_bus'
 import { readdirSync, statSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { pathToFileURL, fileURLToPath } from 'node:url'

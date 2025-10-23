@@ -1,6 +1,4 @@
-import { Command } from '../../../_common/use-cases/command.js'
-
-export class LoginCommand implements Command {
+export class LoginCommand {
   constructor(
     public email: string,
     public password: string

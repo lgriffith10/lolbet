@@ -5,14 +5,19 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.uuid('id')
+      table.uuid('id').primary()
 
-      table.uuid('user_id').references('users.id')
-      table.uuid('lobby_id').references('lobbies.id')
-      table.unique(['user_id', 'lobby_id'])
+      table.uuid('lobby_id').references('id').inTable('lobbies').onDelete('CASCADE').notNullable()
 
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.uuid('user_id').references('id').inTable('users').onDelete('CASCADE').notNullable()
+
+      table.timestamp('joined_at', { useTz: true }).notNullable()
+      table.boolean('is_owner').defaultTo(false)
+
+      table.unique(['lobby_id', 'user_id'])
+
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
     })
   }
 
