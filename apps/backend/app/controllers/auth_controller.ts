@@ -5,6 +5,7 @@ import { inject } from '@adonisjs/core'
 import { CommandBus } from '../_common/use-cases/command_bus.js'
 import { LoginCommand } from '../use-cases/auth/login/login_command.js'
 import { toClassInstance } from '../_common/helpers/to_class_instance.js'
+import { RegisterCommand } from '../use-cases/auth/register/register_command.js'
 
 @inject()
 export default class AuthController {
@@ -18,10 +19,9 @@ export default class AuthController {
 
   async register({ request, response }: HttpContext) {
     const payload = await request.validateUsing(registerValidator)
+    const command = toClassInstance(RegisterCommand, payload)
 
-    const user = await User.create(payload)
-
-    return response.created(user)
+    return response.created(await this._commandBus.execute(command))
   }
 
   async logout({ auth, response }: HttpContext) {
