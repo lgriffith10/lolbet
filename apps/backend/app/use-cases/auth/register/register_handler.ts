@@ -1,14 +1,15 @@
 import User from '#models/user'
-import { CommandHandler } from '../../../_common/decorators/command_handler_decorator.js'
-import { Handler } from '../../../_common/use-cases/base_handler.js'
+import { CommandHandler } from '#common/decorators/command_handler_decorator'
+import { BaseHandler } from '#common/use-cases/base_handler'
 import { RegisterCommand } from './register_command.js'
 import { RegisterResponse } from './register_response.js'
 import { inject } from '@adonisjs/core'
+import { CommandResult } from '#common/utils/commandResult'
 
 @inject()
 @CommandHandler(RegisterCommand)
-export default class RegisterHandler implements Handler<RegisterCommand, RegisterResponse> {
-  async execute(command: RegisterCommand): Promise<RegisterResponse> {
+export default class RegisterHandler extends BaseHandler<RegisterCommand, RegisterResponse> {
+  async execute(command: RegisterCommand): Promise<CommandResult<RegisterResponse | null>> {
     const userExists = await User.query().where('email', command.email).first()
 
     if (userExists) {
@@ -21,8 +22,6 @@ export default class RegisterHandler implements Handler<RegisterCommand, Registe
       email: command.email,
     })
 
-    return new RegisterResponse({
-      userId: id,
-    })
+    return CommandResult.created(new RegisterResponse(id))
   }
 }
