@@ -12,7 +12,17 @@ export interface ApiResponse<T = unknown> {
 
 api.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject(error),
+  (error: AxiosResponse) => {
+    switch (error.status) {
+      case 401:
+        localStorage.removeItem('token')
+        window.location.pathname = '/login'
+      // TODO: Add forbidden status page
+      case 403:
+      default:
+        break
+    }
+  },
 )
 
 export async function unwrap<T>(
