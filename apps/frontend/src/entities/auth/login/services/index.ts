@@ -1,7 +1,6 @@
 ﻿import type { LoginRequest, LoginResponse } from '@/entities/auth/login/types'
-import { api } from '@/services/api.ts'
-import type { AxiosResponse } from 'axios'
+import { api } from '@/utils/services/api.ts'
 
-export async function loginMutation(request: LoginRequest): Promise<AxiosResponse<LoginResponse>> {
+export async function loginMutation(request: LoginRequest): Promise<LoginResponse> {
   return api.post('/auth/login', request)
 }

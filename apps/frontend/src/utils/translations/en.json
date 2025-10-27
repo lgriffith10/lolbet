@@ -1,0 +1,12 @@
+﻿{
+  "auth": {
+    "api": {
+      "loginError": "Invalid user credentials."
+    },
+    "form": {
+      "login": {
+        "title": "Let's e-bet"
+      }
+    }
+  }
+}

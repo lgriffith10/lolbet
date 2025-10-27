@@ -33,9 +33,14 @@ import { loginFormSchema } from '@/entities/auth/login/schema'
 import { useLoginMutation } from '@/entities/auth/login/composables'
 import BetLoader from '@/common/components/loaders/BetLoader.vue'
 import { useToast } from 'vue-toastification'
+import { useAuthStore } from '@/entities/store/useAuthStore.ts'
+import { useRouter } from 'vue-router'
+import { useLocalStorage } from '@vueuse/core'
 
-const { mutateAsync, data, isError, isPending } = useLoginMutation()
+const { mutateAsync, data, isPending } = useLoginMutation()
 const toast = useToast()
+const authStore = useAuthStore()
+const router = useRouter()
 
 const { errors, defineField, handleSubmit } = useForm({
   validationSchema: toTypedSchema(loginFormSchema),
@@ -50,7 +55,18 @@ const onSubmit = handleSubmit(async (form) => {
     password: form.password,
   })
     .then(() => {
-      console.log('data', data.value)
+      const token = data.value?.token
+      useLocalStorage('token', token)
+      if (token) {
+        authStore.setToken(token)
+        authStore.setIsAuthenticated(true)
+
+        router.push({ name: 'Home' })
+      } else {
+        authStore.setToken(undefined)
+        authStore.setIsAuthenticated(false)
+        throw new Error()
+      }
     })
     .catch(() => {
       toast.error('Invalid user credentials.')
