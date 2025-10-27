@@ -4,7 +4,7 @@ import { BaseHandler } from '#common/use-cases/base_handler'
 import { RegisterCommand } from './register_command.js'
 import { RegisterResponse } from './register_response.js'
 import { inject } from '@adonisjs/core'
-import { CommandResult } from '#common/utils/commandResult'
+import { CommandResult } from '#common/utils/command_result'
 
 @inject()
 @CommandHandler(RegisterCommand)

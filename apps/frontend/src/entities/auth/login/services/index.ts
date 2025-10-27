@@ -1,6 +1,6 @@
 ﻿import type { LoginRequest, LoginResponse } from '@/entities/auth/login/types'
-import { api } from '@/utils/services/api.ts'
+import { api, type ApiResponse, unwrap } from '@/utils/services/api.ts'
 
-export async function loginMutation(request: LoginRequest): Promise<LoginResponse> {
-  return api.post('/auth/login', request)
+export async function loginMutation(request: LoginRequest): Promise<LoginResponse | null> {
+  return unwrap(api.post<ApiResponse<LoginResponse>>('/auth/login', request))
 }

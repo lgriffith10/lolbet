@@ -4,7 +4,7 @@ import { BaseHandler } from '#common/use-cases/base_handler'
 import { CreateLobbyResponse } from '#use-cases/lobby/create_lobby/create_lobby_response'
 import Lobby from '#models/lobby'
 import { inject } from '@adonisjs/core'
-import { CommandResult } from '#common/utils/commandResult'
+import { CommandResult } from '#common/utils/command_result'
 import { RandomCharacterGeneratorService } from '#services/random_character_generator_service'
 import LobbyCreatedEvent from '#events/lobby/lobby_created'
 

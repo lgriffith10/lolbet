@@ -1,5 +1,5 @@
 import { HttpContext } from '@adonisjs/core/http'
-import { CommandResult } from '#common/utils/commandResult'
+import { CommandResult } from '#common/utils/command_result'
 
 export interface Handler<C, R = any> {
   execute(command: C): Promise<CommandResult<R | null>> | CommandResult<R | null>

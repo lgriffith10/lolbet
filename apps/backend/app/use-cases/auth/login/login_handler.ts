@@ -4,7 +4,7 @@ import { CommandHandler } from '#common/decorators/command_handler_decorator'
 import { LoginCommand } from './login_command.js'
 import { LoginResponse } from './login_response.js'
 import { inject } from '@adonisjs/core'
-import { CommandResult } from '#common/utils/commandResult'
+import { CommandResult } from '#common/utils/command_result'
 
 @inject()
 @CommandHandler(LoginCommand)

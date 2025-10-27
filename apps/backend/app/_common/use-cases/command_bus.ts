@@ -1,7 +1,7 @@
 import app from '@adonisjs/core/services/app'
 import { HttpContext } from '@adonisjs/core/http'
 import { Handler } from './base_handler.js'
-import { CommandResult } from '#common/utils/commandResult'
+import { CommandResult } from '#common/utils/command_result'
 
 type CommandConstructor<C> = new (...args: any[]) => C
 

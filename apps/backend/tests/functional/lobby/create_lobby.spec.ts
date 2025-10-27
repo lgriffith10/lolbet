@@ -4,7 +4,7 @@ import testUtils from '@adonisjs/core/services/test_utils'
 import { UserFactory } from '#database/factories/user_factory'
 import { CreateLobbyCommandFactory } from '#tests/factories/lobby/create_lobby_command_factory'
 import Lobby from '#models/lobby'
-import { CommandResult } from '#common/utils/commandResult'
+import { CommandResult } from '#common/utils/command_result'
 import { CreateLobbyResponse } from '#use-cases/lobby/create_lobby/create_lobby_response'
 
 test.group('Lobby - CreateLobby', (group) => {
