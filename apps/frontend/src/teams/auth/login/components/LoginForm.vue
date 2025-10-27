@@ -36,11 +36,13 @@ import { useToast } from 'vue-toastification'
 import { useAuthStore } from '@/entities/store/useAuthStore.ts'
 import { useRouter } from 'vue-router'
 import { useLocalStorage } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 
 const { mutateAsync, data, isPending } = useLoginMutation()
 const toast = useToast()
 const authStore = useAuthStore()
 const router = useRouter()
+const { t } = useI18n()
 
 const { errors, defineField, handleSubmit } = useForm({
   validationSchema: toTypedSchema(loginFormSchema),
@@ -69,7 +71,7 @@ const onSubmit = handleSubmit(async (form) => {
       }
     })
     .catch(() => {
-      toast.error('Invalid user credentials.')
+      toast.error(t('auth.api.loginError'))
     })
 })
 </script>

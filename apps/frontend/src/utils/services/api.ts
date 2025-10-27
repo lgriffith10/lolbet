@@ -1,5 +1,6 @@
 ﻿import axios, { type AxiosResponse } from 'axios'
 
+// TODO: add baseURL as base env var
 export const api = axios.create({
   baseURL: 'http://localhost:3333/api',
 })

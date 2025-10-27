@@ -19,5 +19,5 @@
   </div>
 </template>
 <script setup lang="ts">
-import LoginForm from '@/teams/auth/login/LoginForm.vue'
+import LoginForm from '@/teams/auth/login/components/LoginForm.vue'
 </script>
