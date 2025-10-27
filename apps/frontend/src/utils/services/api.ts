@@ -17,11 +17,14 @@ api.interceptors.response.use(
       case 401:
         localStorage.removeItem('token')
         window.location.pathname = '/login'
+        break
       // TODO: Add forbidden status page
       case 403:
       default:
         break
     }
+
+    return Promise.reject(error)
   },
 )
 
